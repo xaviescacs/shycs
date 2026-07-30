@@ -2,10 +2,9 @@ Package: shycs
 Title: Modules and themes for csdta Shiny apps.
 Version: 0.0.0.9000
 Authors@R: 
-    person("Xabvier", "Farré Manzorro", , "xaviescacs@gmail.com", role = c("aut", "cre"))
+    person("Xavier", "Farré Manzorro", , "xaviescacs@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
