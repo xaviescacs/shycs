@@ -2,18 +2,26 @@
 % Please edit documentation in R/style.R
 \name{get_csdta_colours}
 \alias{get_csdta_colours}
-\title{Get the csdta corporative colours}
+\title{Get or show the csdta colours}
 \usage{
 get_csdta_colours(colours = NULL, show = FALSE)
 }
 \arguments{
-\item{colours}{character; a character vector of colour names to get. If not provided, all colours are returned.}
+\item{colours}{a subseting vector to filter colours. If \code{NULL} provided, all colours are selected.}
 
 \item{show}{logical; if \code{TRUE}, the colours are displayed instead of returned.}
 }
 \value{
-Named string vector with csdta colours.
+Named string vector with csdta colours in hex format.
 }
 \description{
-Get the csdta corporative colours
+The csdta brnad has a series of corporative colors that are used in the plots and other elements of
+the shiny apps.
+}
+\examples{
+get_csdta_colours()
+get_csdta_colours(1)
+get_csdta_colours(c("red","bright_green"))
+get_csdta_colours(show = TRUE)
+
 }
