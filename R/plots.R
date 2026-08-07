@@ -5,7 +5,6 @@
 #' @returns A ggplot2 theme designed to plot a distribution over the X axis using `geom_point`
 #'
 #' @export
-#' @examples
 theme_dist_oneline <- function(...) {
   `%ggreplace%` <- ggplot2::`%+replace%` # custom %+replace% to bypass importing it
   ggplot2::theme_grey(...) %ggreplace%
@@ -25,10 +24,10 @@ theme_dist_oneline <- function(...) {
     )
 }
 
-#' Plot distribition in one dimension
+#' Plot a one-dimensional distribition in a narrow space
 #' 
 #' The aim of this plot is to be able to picture the distribution of a one-dimensional set of values
-#' using the least space possible, the horizontal line. 
+#' using the least vertical space possible. 
 #' 
 #' Kernel density and interpolation is used to weight every point to be able to use the weighted 
 #' value as an aesthetic that helps enhancing which regions are most likely.
@@ -44,28 +43,24 @@ theme_dist_oneline <- function(...) {
 #' @export
 #' @examples
 #' plot_dist_oneline(rexp(100,2))
-#' plot_dist_oneline(rnorm(100),limits = c(-4,4))
+#' plot_dist_oneline(rnorm(10000),limits = c(-4,4))
+#' plot_dist_oneline(runif(20,0,1))
+#' plot_dist_oneline(rpois(200,1))
+#' plot_dist_oneline(rbinom(200,10,.5))
 #' 
 plot_dist_oneline <- function(x,limits = NULL){
-  den <- density(x)
+  density_obj <- density(x)
   color_blue <- get_csdta_colours("bright_blue")
   color_red <- get_csdta_colours("red")
   color_dark <- get_csdta_colours("dark")
   color_sea <- get_csdta_colours("sea")
   x_mean <- mean(x)
-  data.frame(x = x,density = approx(den$x, den$y, xout = x)$y) |> 
-    dplyr::mutate(density_scaled = (density)*50) |> 
+  data.frame(x = x,x_k_density = approx(density_obj$x, density_obj$y, xout = x)$y) |> 
     ggplot2::ggplot(ggplot2::aes(x = x, y = 0)) +  
-      ggdist::stat_halfeye(
-        fill = color_sea,
-        adjust = .5, 
-        width = .6, 
-        .width = 0, 
-        justification = -.5, 
-        point_colour = NA) + 
-      ggplot2::geom_boxplot(outlier.shape = NA,box.color = ,whisker.color = color_dark) +
-      ggplot2::geom_point(ggplot2::aes(size = density),alpha = 0.1,color = color_blue) +
-      #ggplot2::geom_vline(ggplot2::aes(xintercept = x_mean), color = color_red, size = 0.5) +
+      ggdist::stat_halfeye(fill = color_sea, justification = -.6, adjust = .4, .width = 0, point_colour = NA) + 
+      # adjust = .5, width = .6, .width = 0,
+      ggplot2::geom_point(ggplot2::aes(size = x_k_density),alpha = 1/sqrt(length(x)),color = color_blue) +
+      ggplot2::geom_boxplot(outlier.shape = NA,box.color = color_dark,whisker.color = color_dark, median.color = color_dark, fill = "transparent") +
       ggplot2::geom_segment(x = x_mean, xend = x_mean, y = 0, yend = 1, color = color_red,linewidth = 0.5) +
       ggplot2::scale_x_continuous(limits = limits) +
       theme_dist_oneline()
