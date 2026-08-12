@@ -10,7 +10,7 @@ theme_dist_oneline(...)
 \item{...}{Params to be passed to \code{theme_grey()}.}
 }
 \value{
-A ggplot2 theme designed to plot a distribution over the X axis using
+A ggplot2 theme designed to plot a distribution over the X axis using \code{geom_point}
 }
 \description{
 Title
