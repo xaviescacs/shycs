@@ -21,7 +21,8 @@ get_csdta_colours <- function(colours = NULL,show = FALSE){
     "red" = "#da0932ff",
     "dark" = "#0e2626ff",
     "bright_green" = "#2fed64ff",
-    "bright_blue" = "#2f97edff"
+    "bright_blue" = "#2f97edff",
+    "sea" = "#2fed9bff"
   )
   # sanity checks on colours 
   if(!is.null(colours)){
