@@ -10,13 +10,13 @@ create_module_app(module, id = "m", ui_args = list(), server_args = list())
 run_module_app(module, id = "m", ui_args = list(), server_args = list())
 }
 \arguments{
-\item{module}{Character. The name of the module to be rendered.}
+\item{module}{Character. The module name in snake case.}
 
 \item{id}{Character. Module's id, "m" by default as there is no need to change it.}
 
-\item{ui_args}{Named List. Arguments to be passed to the module's UI function.}
+\item{ui_args}{Named list. Arguments to be passed to the UI module's function.}
 
-\item{server_args}{Named List. Arguments to be passed to the module's Server function.}
+\item{server_args}{Named list. Arguments to be passed to the Server module's function.}
 }
 \value{
 The app shiny object.
@@ -26,4 +26,9 @@ NULL This function is called for its side effects.
 \description{
 The purpose of this function is to be able to examine and test any Shiny module on this
 packages without having to develop an actual shiny app.
+}
+\examples{
+create_module_app("plotDistOneline",server_args =  list(x = shiny::reactive(rnorm(100))))
+
+
 }
