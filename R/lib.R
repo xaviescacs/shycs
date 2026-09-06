@@ -14,20 +14,24 @@
 #' 
 #' @rdname create_run_module_app
 #' 
+#' @examples
+#' create_module_app("plotDistOneline",server_args =  list(x = shiny::reactive(rnorm(100))))
+#' 
+#' 
 create_module_app <- function(module,id = "m",ui_args = list(),server_args = list()) {
    
   ui <- shiny::fluidPage(
     shiny::titlePanel(paste0("Module: ",module)),
     shiny::fluidRow(
-        shiny::tags$h3("ui_args"),
+        shiny::tags$h3("UI Arguments (ui_args)"),
         shiny::tags$code(ui_args |> substitute() |> deparse()),
-        shiny::tags$h3("server_args"),
+        shiny::tags$h3("Server Arguments (server_args)"),
         shiny::tags$code(server_args |> substitute() |> deparse())
     ),
     shiny::tags$div(
         style = "border: 2px solid #333333; padding: 15px; border-radius: 5px; margin: 10px 0;",
         shiny::fluidRow(
-            do.call(paste0(module,"UI"),list("id" = id) |> c(ui_args))
+          do.call(paste0(module,"UI"),list("id" = id) |> c(ui_args))
         )
     )
   )
@@ -39,7 +43,7 @@ create_module_app <- function(module,id = "m",ui_args = list(),server_args = lis
 }
 
 #' @rdname create_run_module_app
-#'
+#' 
 #' @returns NULL This function is called for its side effects.
 #'
 #' @export
