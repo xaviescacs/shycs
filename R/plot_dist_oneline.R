@@ -1,10 +1,8 @@
-#' Title
+#' Theme for the dist_oneline plot
 #'
 #' @param ... Params to be passed to `theme_grey()`.
 #'
 #' @returns A ggplot2 theme designed to plot a distribution over the X axis using `geom_point`
-#'
-#' @export
 theme_dist_oneline <- function(...) {
   `%ggreplace%` <- ggplot2::`%+replace%` # custom %+replace% to bypass importing it
   ggplot2::theme_grey(...) %ggreplace%

@@ -51,3 +51,4 @@ run_module_app <- function(module,id = "m",ui_args = list(),server_args = list()
   shiny::runApp(create_module_app(module,id,ui_args,server_args))
   invisible(NULL)
 }
+
