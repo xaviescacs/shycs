@@ -6,6 +6,5 @@ htmltools::tagList(
     verbatimTextOutput("summary"),
     tableOutput("table")
   )
-
 )
 
