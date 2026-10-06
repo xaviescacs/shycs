@@ -73,121 +73,121 @@ ui_csdta_header <- function(title,theory=TRUE,credits=TRUE,languages,csdta_link=
 
   htmltools::withTags(
     tagList(
-    header(
-      class = "csdta-header p-0 text-bg-dark",
-      div(
-        class = "container",
+      header(
+        class = "csdta-header p-0 text-bg-dark",
         div(
-          class = "d-flex flex-wrap align-items-center justify-content-center",
+          class = "container",
           div(
-            class = "d-flex align-items-center justify-content-center me-auto",
-            a(
-              class = "me-3",
-              href = f_args[["csdta_link"]],
-              img(
-                src = "logo_header.svg",
-                alt = "csdta logo",
-                width = "64px",
-                height = "64px"
-              )
-            ),
-            h3(
-              class = "mb-0",
-              f_args[["title"]]
-            )
-          ),
-          div(
-            class = "d-flex my-2",
+            class = "d-flex flex-wrap align-items-center justify-content-center",
             div(
-              class = "btn-group mx-3",
-              if (f_args[["theory"]]) {
-                button(
-                  id = "button-theory",
-                  class = "btn btn-primary",
-                  `data-bs-toggle`="modal",
-                  `data-bs-target`="#theory-modal",
-                  "Theory"
+              class = "d-flex align-items-center justify-content-center me-auto",
+              a(
+                class = "me-3",
+                href = f_args[["csdta_link"]],
+                img(
+                  src = "logo_header.svg",
+                  alt = "csdta logo",
+                  width = "64px",
+                  height = "64px"
                 )
-              },
-              if (f_args[["credits"]]) {
-                button(
-                  id = "button-credits",
-                  class = "btn btn-primary",
-                  `data-bs-toggle`="modal",
-                  `data-bs-target`="#credits-modal",
-                  "Credits"
+              ),
+              h3(
+                class = "mb-0",
+                f_args[["title"]]
+              )
+            ),
+            div(
+              class = "d-flex my-2",
+              div(
+                class = "btn-group mx-3",
+                if (f_args[["theory"]]) {
+                  button(
+                    id = "button-theory",
+                    class = "btn btn-primary",
+                    `data-bs-toggle`="modal",
+                    `data-bs-target`="#theory-modal",
+                    "Theory"
+                  )
+                },
+                if (f_args[["credits"]]) {
+                  button(
+                    id = "button-credits",
+                    class = "btn btn-primary",
+                    `data-bs-toggle`="modal",
+                    `data-bs-target`="#credits-modal",
+                    "Credits"
+                  )
+                }
+              ),
+              ul(
+                class = "nav mx-3",
+                languages_li_tags
+              ),
+              a(
+                class = "mx-3",
+                href = f_args[["github_link"]],
+                img(
+                  src = "GitHub_Invertocat_White.svg",
+                  alt = "GitHub logo",
+                  width = "40px",
+                  height = "40px"
                 )
-              }
+              )
+            )
+          )
+        )
+      ),
+    
+      # theory modal
+      div(
+        class = "modal fade",
+        id = "theory-modal",
+        tabindex = "-1",
+        `aria-labelledby` = "theoryModal",
+        `aria-hidden` = "true",
+        div(
+          class = "modal-dialog modal-fullscreen",
+          div(
+            class = "modal-content",
+            div(
+              class = "modal-header",
+              h1(
+                class = "modal-title fs-5",
+                id = "exampleModalLabel",
+                "Theory"
+              ),
+              button(
+                type = "button",
+                class = "btn-close",
+                `data-bs-dismiss` = "modal",
+                `aria-label` = "Close"
+              )
             ),
-            ul(
-              class = "nav mx-3",
-              languages_li_tags
+            div(
+              class = "modal-body",
+              modal_body_taglist
             ),
-            a(
-              class = "mx-3",
-              href = f_args[["github_link"]],
-              img(
-                src = "GitHub_Invertocat_White.svg",
-                alt = "GitHub logo",
-                width = "40px",
-                height = "40px"
+            div(
+              class = "modal-footer justify-content-between",
+              button(
+                type = "button",
+                class = "btn btn-secondary",
+                span(class = "glyphicon glyphicon-print me-2"),
+                "Export"
+              ),
+              button(
+                type = "button",
+                class = "btn btn-secondary",
+                `data-bs-dismiss` = "modal",
+                "Close"
               )
             )
           )
         )
       )
-    ),
-    
-    # theory modal
-    div(
-      class = "modal fade",
-      id = "theory-modal",
-      tabindex = "-1",
-      `aria-labelledby` = "theoryModal",
-      `aria-hidden` = "true",
-      div(
-        class = "modal-dialog modal-fullscreen",
-        div(
-          class = "modal-content",
-          div(
-            class = "modal-header",
-            h1(
-              class = "modal-title fs-5",
-              id = "exampleModalLabel",
-              "Theory"
-            ),
-            button(
-              type = "button",
-              class = "btn-close",
-              `data-bs-dismiss` = "modal",
-              `aria-label` = "Close"
-            )
-          ),
-          div(
-            class = "modal-body",
-            modal_body_taglist
-          ),
-          div(
-            class = "modal-footer justify-content-between",
-            button(
-              type = "button",
-              class = "btn btn-secondary",
-              span(class = "glyphicon glyphicon-print me-2"),
-              "Export"
-            ),
-            button(
-              type = "button",
-              class = "btn btn-secondary",
-              `data-bs-dismiss` = "modal",
-              "Close"
-            )
-          )
-        )
-      )
-    )
 
-  # tagsList END 
-  )
+    # tagsList END 
+    )
 
   # withTags END
   )
